@@ -98,11 +98,43 @@
                 <button type="submit">Mark Attendance</button>
             </form>
             <div class="button">
-                <form action="QR.html">
+                <form action="QR.php">
                     <button type="submit">Attendance Completed</button>
                 </form>
             </div>
         </div>
-        <script src="markAttendance.js"></script>
+        <script>
+            // Function to get URL parameters
+            function getQueryParam(param) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+        
+            // Retrieve class, subject, and date from URL
+            const className = getQueryParam("class");
+            const subject = getQueryParam("subject");
+            const date = getQueryParam("date") || new Date().toISOString().split("T")[0]; // Default: today's date
+        
+            // Ensure required parameters exist
+            if (!className || !subject) {
+                alert("Error: Missing class or subject parameters!");
+                window.location.href = "QR.php"; // Redirect back if missing
+            }
+        
+            // Add hidden inputs to pass these values in form submission
+            document.addEventListener("DOMContentLoaded", function () {
+                const form = document.getElementById("attendance-form");
+        
+                // Create hidden input fields
+                ["class", "subject", "date"].forEach(param => {
+                    const input = document.createElement("input");
+                    input.type = "hidden";
+                    input.name = param;
+                    input.value = getQueryParam(param);
+                    form.appendChild(input);
+                });
+            });
+        </script>
+        
     </body>
 </html>

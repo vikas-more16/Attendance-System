@@ -1,11 +1,11 @@
 <?php
-session_start();
+session_start(); // Start the session
 
 // Database connection
 $serverName = "localhost";
 $userName = "root";
 $password = "";
-$DATABASE = "2r"; 
+$DATABASE = "2r"; // Fetch database name from session
 $SUBJECT = $_SESSION['Subject'];
 $DATE = $_SESSION['Date'];
 

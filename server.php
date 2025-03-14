@@ -29,14 +29,14 @@ if ($result->num_rows == 0) {
     $sql = "ALTER TABLE `$Subject` ADD COLUMN `$Date` VARCHAR(10) DEFAULT 'Absent'";
     
     if ($conn->query($sql) === TRUE) {
-        header("Location: QR.html");
+        header("Location: QR.php");
         exit();
     } else {
         echo "<script>alert('Error adding column: " . $conn->error . "');</script>";
     }
 } else {
     echo "<script>alert('Column already exists!');</script>";
-    header("Location: QR.html");
+    header("Location: QR.php");
     exit();
 }
 
